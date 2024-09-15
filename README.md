@@ -14,9 +14,20 @@
    그래서 나는 '테스트 코드 끝에마다 clear해주는 코드를 호출해야겠구나'라고 생각했는데, 테스트 코드가 1만개가 되면 일일이 그걸 다 붙여주기 힘들다.
    (개발자는 게을러야 한다)
    그래서 `@AfterEach` 라는 어노테이션을 사용해서 테스트 코드가 끝날 때마다 수행할 메서드를 따로 작성해주면 간편하게 문제를 해결할 수 있다.
-   ```
+   ```java
    @AfterEach
     public void afterEach() {
         // 테스트 코드가 수행되고 나면 수행할 로직 작성
     }
+   ```
+
+2. `@BeforeEach`
+   각 테스트 실행 전에 호출되는 어노테이션. </br>
+   여기서는 테스트가 서로 영향이 없도록 항상 새로운 객체를 생성하고, 의존관계도 새로 맺어준다.
+   ```java
+   @BeforeEach
+     public void beforeEach() {
+         memberRepository = new MemoryMemberRepository();
+         memberService = new MemberService(memberRepository);
+     }
    ```
