@@ -31,3 +31,24 @@
          memberService = new MemberService(memberRepository);
      }
    ```
+   
+# TIL | 2024.09.16.
+1. `@Autowired` </br>
+   ```java
+   public class ClassA {
+       private final ClassB classB;
+       
+      @Autowired
+       public ClassA(ClassB classB) {
+           this.classB = classB;
+       }
+   }
+   ```
+   `@Autowired` 어노테이션이 붙어있으면 ClassA 객체 생성 시점에 스프링 컨테이너가 ClassB 스프링 빈을 찾아서 주입한다. </br>
+   생성자가 한 개 뿐이라면 **생략할 수 있다.**
+2. 스프링은 스프링 컨테이너에 스프링 빈을 등록할 때 싱글톤으로 등록한다. 즉 하나의 인스턴스를 생성해서 계속 사용한다.
+   (싱글톤이 아니게 설정할 수 있지만, 대부분 싱글톤으로 사용한다.)
+3. `@SpringBootApplication` </br>
+   스프링 컨테이너와 테스트를 함께 실행한다
+4. `@Transactional` </br>
+   테스트 시작 전에 트랜잭션을 실행하고, 테스트 종료후에 롤백을 하기 때문에, DB에 영향없이 테스트를 진행할 수 있다.
